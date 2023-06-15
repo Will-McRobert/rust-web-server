@@ -222,22 +222,9 @@ pub mod http {
     
                         response = response_struct.to_string().into_bytes();
                     },
-                    "/register" => {read_to_string("html/index.html").expect("Unable to read file");
-                        let contents =
-                            read_to_string("html/register.html").expect("Unable to read file");
-                        let headers: Vec<HttpResponseHeader> =
-                            vec![HttpResponseHeader::new("Content-Type", "text/html")];
-                        let response_struct: HttpResponse =
-                            HttpResponse::new("200", "OK", headers, &contents);
-    
-                        response = response_struct.to_string().into_bytes();
-                    }
                     &_ => {}
                 },
                 "POST" => match request.get_path() {
-                    "/create/user" => {
-                        response = b"HTTP/1.1 200 OK\r\nContent-Type: application/json\r\n\r\n{\r\n\tOperation: createUser\r\n\tStatus: success\r\n}\r\n".to_vec();
-                    }
                     &_ => {}
                 },
                 &_ => {}
